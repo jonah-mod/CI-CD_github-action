@@ -1,0 +1,24 @@
+name: CD
+
+on:
+  push:
+    branches: [ main ]
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy
+      uses: appleboy/ssh-action@master
+      with:
+        host: 91.212.174.236
+        port: 22
+        username: root
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script: |
+          cd /srv/testSSH
+          git reset --hard HEAD^
+          git pull
+          forever stop index.js
+          forever start index.js
