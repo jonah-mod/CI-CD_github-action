@@ -9,9 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: npm install
-      run: npm install
-
     - name: install forever
       run: npm install -g forever
 
