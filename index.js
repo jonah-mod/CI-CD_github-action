@@ -3,7 +3,7 @@
     const port = 3000;
 
     app.get('/', (req, res) => {
-      res.send('<h1>Greetings<h1>');
+      res.send('<h1>A New Message<h1>');
     });
 
     app.listen(port, () => {
