@@ -9,9 +9,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: install forever
-      run: npm install -g forever
-
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
@@ -23,5 +20,6 @@ jobs:
           cd /srv/testSSH
           git reset --hard HEAD^
           git pull
+          npm install -g forever
           forever stop index.js
           forever start index.js
