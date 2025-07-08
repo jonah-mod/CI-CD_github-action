@@ -12,14 +12,21 @@ jobs:
     - name: Deploy
       uses: appleboy/ssh-action@master
       with:
-        host: 91.212.174.236
-        port: 22
-        username: root
+        host: ${{ secrets.SSH_HOST }}
+        port: ${{ secrets.SSH_PORT }}
+        username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_PRIVATE_KEY }}
         script: |
+          
+          #Navigate to Project
           cd /srv/testSSH
+
+          #Install npm forever
+          npm list -g forever || npm install -g forever
+          
+          #Deploy Code
           git reset --hard HEAD^
           git pull
-          npm install -g forever
-          forever stop index.js
-          forever start index.js
+          
+          #Restart App
+          forever restart index.js || forever start index.js
