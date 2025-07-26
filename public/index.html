@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Image in Node.js</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Image Display Example</h1>
+    
+    <!-- Reference the image from the public/images directory -->
+    <img src="/images/high.jpg" alt="Sample Image">
+    
+
+    <h1>Your IP Address</h1>
+    <div class="ip-display" id="ipDisplay">Loading...</div>
+    
+    <!-- Optional: Fallback if image fails to load -->
+    <script>
+        document.querySelector('img').onerror = function() {
+            this.src = '/images/fallback.jpg'; // if high.jpg fails
+            this.alt = 'Image not found';
+        };
+	 fetch('/myip')
+            .then(response => response.text())
+            .then(ip => {
+                document.getElementById('ipDisplay').textContent = ip;
+            })
+            .catch(error => {
+                document.getElementById('ipDisplay').textContent = 'Error fetching IP';
+            });
+    </script>
+</body>
+</html>
