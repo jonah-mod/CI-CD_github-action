@@ -44,7 +44,7 @@ npm install
 
 Go to your GitHub repository → Settings → Secrets and variables → Actions and add these secrets:
 | Secret Name     |	Description	                       | Example
-| :---: | :---: | :---: |
+| :--- | :--- | :--- |
 | SSH_HOST        |	Your server IP address or hostname | 192.168.1.100
 | SSH_PORT        |	SSH port (usually 22)              | 22
 | SSH_USERNAME    |	SSH username                       | deploy
